@@ -1,24 +1,35 @@
 name: CI
 
-on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+on: [push, pull_request]
 
-  workflow_dispatch:
+env: 
+  app_name: app$ {{ github.run_number }}
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       
-      - name: Run a one-line script
-        run: echo Hello, world!
+      - name: Build
+        run: g++ Hello.cpp -o ${{ env.app_name}}_${{ runner.os}}
         
-      - name: Run a multi-line script
-        run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+      - name: Upload
+        uses: actions/upload-artifact@v3
+        with: 
+          name: arifact
+          path: ${{ env.app_name}}_${{ runner.os}}
           
+      - name: Download
+        uses: actions/download-artifacts@v3
+        with:
+          name: artifacts
+          path: artifacts
+          
+      - name: Telegram
+        uses: telegram-artifact@main
+        with:
+          to: ${{ secrets.CHAT }}
+          token: ${{ secrets.TOKEN }}
+          message: Github artifact
+          document: artifacts/**
