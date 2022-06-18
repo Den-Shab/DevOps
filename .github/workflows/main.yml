@@ -40,4 +40,4 @@ jobs:
         with:
           to: ${{ secrets.CHAT }}
           token: ${{ secrets.TOKEN }}
-          message: Building error
+          message: Error, something went wrong...
