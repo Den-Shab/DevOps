@@ -21,14 +21,14 @@ jobs:
           path: ${{ env.app_name}}_${{ runner.os}}
           
       - name: Download
-        uses: actions/download-artifacts@v3
+        uses: actions/download-artifact@v3
         with:
           name: artifact
           path: artifacts
           
       - name: Telegram
         if: ${{ always() }}
-        uses: appleboy/telegram-artifact@master
+        uses: appleboy/telegram-action@main
         with:
           to: ${{ secrets.CHAT }}
           token: ${{ secrets.TOKEN }}
