@@ -31,7 +31,6 @@ jobs:
         with:
           to: ${{ secrets.CHAT }}
           token: ${{ secrets.TOKEN }}
-          if: ${{ artifacts }}
           message: Github artifact
           document: artifacts/**
           
