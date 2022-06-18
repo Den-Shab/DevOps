@@ -27,6 +27,7 @@ jobs:
           path: artifacts
           
       - name: Telegram
+        if: ${{ always() }}
         uses: telegram-artifact@main
         with:
           to: ${{ secrets.CHAT }}
