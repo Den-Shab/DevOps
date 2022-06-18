@@ -17,13 +17,13 @@ jobs:
       - name: Upload
         uses: actions/upload-artifact@v3
         with: 
-          name: arifact
+          name: arifacts
           path: ${{ env.app_name}}_${{ runner.os}}
           
       - name: Download
         uses: actions/download-artifact@v3
         with:
-          name: artifact
+          name: artifacts
           path: artifacts
           
       - name: Telegram
