@@ -23,12 +23,12 @@ jobs:
       - name: Download
         uses: actions/download-artifacts@v3
         with:
-          name: artifacts
+          name: artifacts_folder
           path: artifacts
           
       - name: Telegram
         if: ${{ always() }}
-        uses: appleboy/telegram-artifact@main
+        uses: appleboy/telegram-artifact@master
         with:
           to: ${{ secrets.CHAT }}
           token: ${{ secrets.TOKEN }}
