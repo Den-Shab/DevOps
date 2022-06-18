@@ -3,7 +3,7 @@ name: CI
 on: [push, pull_request]
 
 env: 
-  app_name: app$ {{ github.run_number }}
+  app_name: app${{ github.run_number }}
 
 jobs:
   build:
