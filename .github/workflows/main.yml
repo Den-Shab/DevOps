@@ -28,7 +28,7 @@ jobs:
           
       - name: Telegram
         if: ${{ always() }}
-        uses: telegram-artifact@main
+        uses: appleboy/telegram-artifact@main
         with:
           to: ${{ secrets.CHAT }}
           token: ${{ secrets.TOKEN }}
